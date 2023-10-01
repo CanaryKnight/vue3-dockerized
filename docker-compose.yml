@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/app/Dockerfile
+    environment:
+      - ${APP_ENV:-dev}
+    env_file:
+      - .docker/.env
+

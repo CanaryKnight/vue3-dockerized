@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/app/Dockerfile-dev
+      args:
+        - USER_ID=${USER_ID:-1000}
+        - GROUP_ID=${GROUP_ID:-1000}
+    volumes:
+      - ./app:/app
+    ports:
+      - 8080:8080
+      - 8081:8081
