@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: .docker/app/Dockerfile
+      args:
+        - NODE_IMAGE_VERSION
+        - NGINX_IMAGE_VERSION
     environment:
       - ${APP_ENV:-dev}
     env_file:

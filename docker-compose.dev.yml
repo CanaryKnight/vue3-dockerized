@@ -1,10 +1,11 @@
 services:
   app:
+    env_file:
+      - .docker/.env
     build:
       context: .
       dockerfile: .docker/app/Dockerfile-dev
       args:
-        - USER_ID=${USER_ID:-1000}
         - GROUP_ID=${GROUP_ID:-1000}
     volumes:
       - ./app:/app

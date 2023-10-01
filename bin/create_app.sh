@@ -16,7 +16,11 @@ if  [ -d "$CURRENT_DIR/app" ]; then
   exit 1
 fi;
 
-mkdir app && cd "$_" && docker run --rm -v "${PWD}:/$(basename `pwd`)" -w "/$(basename `pwd`)" -it node:"$NODE_IMAGE_VERSION" sh -c " yarn create vue . && yarn install && chown -R $C_UID:$C_GID ."
+mkdir app && cd "$_" && docker run --rm \
+  -v "${PWD}:/$(basename `pwd`)" -w "/$(basename `pwd`)" -it \
+  -u $(id -u ${USER}):$(id -g ${USER}) \
+  node:"$NODE_IMAGE_VERSION" \
+  sh -c " yarn create vue . && yarn install && chown -R $C_UID:$C_GID ."
 
 if  [ -d "$CURRENT_DIR/app/.vscode" ]; then
   rm -rf "$CURRENT_DIR"/.vscode/

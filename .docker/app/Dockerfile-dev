@@ -1,8 +1,8 @@
-# todo use $NODE_IMAGE_VERSION
-FROM node:18-alpine
+ARG NODE_IMAGE_VERSION
+FROM node:${NODE_IMAGE_VERSION}
 
 ARG GROUP_ID
-ARG USER_ID
+ENV GROUP_ID=${GROUP_ID}
 
 WORKDIR /app
 
@@ -18,13 +18,17 @@ COPY .docker/app/entrypoint-dev.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 8080
-
 RUN mkdir -p /.cache \
     && chown node:node /.cache
+
+COPY ./.docker/app/rootfs/ /
+
+RUN /usr/local/bin/fix_owner.sh
 
 # RUN addgroup -S -g $GROUP_ID canary \
 # RUN adduser -D -g "" -H --ingroup $(getent group "$GROUP_ID" | cut -d: -f1) -u $USER_ID canary
 USER node
+
+EXPOSE 8080
 
 ENTRYPOINT [ "/entrypoint.sh" ]
