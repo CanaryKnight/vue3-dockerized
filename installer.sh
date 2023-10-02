@@ -36,7 +36,7 @@ fi;
 
 echo ""
 
-git clone --branch "$TEMPLATE_VERSION" git@github.com:CanaryKnight/vue3-dockerized.git "$PROJECT_NAME" &> /dev/null
+git clone --branch "$TEMPLATE_VERSION" https://github.com/CanaryKnight/vue3-dockerized.git "$PROJECT_NAME" &> /dev/null
 
 cd "$PROJECT_NAME" && rm -rf .git && rm -rf "./installer.sh"
 
