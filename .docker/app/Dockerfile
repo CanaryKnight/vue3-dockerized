@@ -1,18 +1,18 @@
 # build stage
-ARG  NODE_IMAGE_VERSION
+ARG NODE_IMAGE_VERSION
+ARG NGINX_IMAGE_VERSION
 FROM node:${NODE_IMAGE_VERSION} as build-stage
 WORKDIR /app
 COPY /app/package.json ./
 COPY /app/yarn.lock ./
 
-RUN npm ci
+RUN yarn install
 COPY /app .
-RUN npm run build
+RUN yarn run build
 
-ARG  NGINX_IMAGE_VERSION
 # production stage
 FROM nginx:${NGINX_IMAGE_VERSION} as production-stage
-COPY ./docker/app/rootfs/ /
+COPY ./.docker/app/rootfs/ /
 COPY --from=build-stage /app/dist /srv/app
 EXPOSE 80
 

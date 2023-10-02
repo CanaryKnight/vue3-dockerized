@@ -41,8 +41,8 @@ dev: ## Build dev Docker image & output logs
 
 build: ## Builds prod Docker image
 	@$(DOCKER_COMP)  -f docker-compose.yml -f docker-compose.prod.yml build --pull --no-cache --build-arg NODE_IMAGE_VERSION=${NODE_IMAGE_VERSION} --build-arg NGINX_IMAGE_VERSION=${NGINX_IMAGE_VERSION} --build-arg GROUP_ID=${GROUP_ID}
-prod: build
-	@$(DOCKER_COMP)  -f docker-compose.yml -f docker-compose.prod.yml up
+prod: build ## Build & start prod image
+	@$(DOCKER_COMP)  -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 down: ## Stop the docker
 	@$(DOCKER_COMP) down --remove-orphans

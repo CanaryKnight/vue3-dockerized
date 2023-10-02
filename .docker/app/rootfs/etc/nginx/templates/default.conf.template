@@ -3,5 +3,5 @@ server {
   index index.html;
   error_log  /var/log/nginx/error.log;
   access_log /var/log/nginx/access.log;
-  root /srv;
+  root /srv/app;
 }

@@ -3,7 +3,6 @@
 set -e
 
 CURRENT_DIR=$PWD
-TEMPLATE_VERSION="v0.0.3"
 
 check_command() {
   COMMAND=$1
@@ -36,7 +35,7 @@ fi;
 
 echo ""
 
-git clone --branch "$TEMPLATE_VERSION" https://github.com/CanaryKnight/vue3-dockerized.git "$PROJECT_NAME" &> /dev/null
+git clone https://github.com/CanaryKnight/vue3-dockerized.git "$PROJECT_NAME" &> /dev/null
 
 cd "$PROJECT_NAME" && rm -rf .git && rm -rf "./installer.sh"
 
