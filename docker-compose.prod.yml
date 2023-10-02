@@ -1,4 +1,6 @@
 services:
   app:
     ports:
-      - 80:80
+      - ${NGINX_PORT}:${NGINX_PORT}
+    environment:
+      - ${APP_ENV:-prod}

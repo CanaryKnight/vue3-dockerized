@@ -12,8 +12,9 @@ RUN yarn run build
 
 # production stage
 FROM nginx:${NGINX_IMAGE_VERSION} as production-stage
+
 COPY ./.docker/app/rootfs/ /
 COPY --from=build-stage /app/dist /srv/app
-EXPOSE 80
+EXPOSE ${NGINX_PORT}
 
 CMD ["nginx", "-g", "daemon off;"]
