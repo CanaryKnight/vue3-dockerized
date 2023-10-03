@@ -28,6 +28,12 @@ if  [ -d "$CURRENT_DIR/app/.vscode" ]; then
   mv -f "$CURRENT_DIR"/app/.vscode "$CURRENT_DIR"/
 fi;
 
-mv -f "$CURRENT_DIR"/app/.gitignore "$CURRENT_DIR"/.gitignore
+if [ -f "$CURRENT_DIR/app/vite.config.ts" ]; then
+  sed  -i 's/export default defineConfig({/export default defineConfig({\n  server: {\n    host: true,\n    port: 8080,\n    watch: {\n      usePolling: true,\n    }\n  },/' "$CURRENT_DIR"/app/vite.config.ts
+fi;
 
-sed  -i 's/export default defineConfig({/export default defineConfig({\n  server: {\n    host: true,\n    port: 8080,\n    watch: {\n      usePolling: true,\n    }\n  },/' "$CURRENT_DIR"/app/vite.config.ts
+if [ -f "$CURRENT_DIR/app/vite.config.js" ]; then
+  sed  -i 's/export default defineConfig({/export default defineConfig({\n  server: {\n    host: true,\n    port: 8080,\n    watch: {\n      usePolling: true,\n    }\n  },/' "$CURRENT_DIR"/app/vite.config.js
+fi;
+
+mv -f "$CURRENT_DIR"/app/.gitignore "$CURRENT_DIR"/.gitignore

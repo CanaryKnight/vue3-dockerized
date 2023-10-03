@@ -41,7 +41,18 @@ cd "$PROJECT_NAME" && rm -rf .git && rm -rf "./installer.sh"
 
 make create_app
 
-echo "# $PROJECT_NAME\n\nToDo: Update readme" > "$CURRENT_DIR/$PROJECT_NAME/README.md"
+HELP=$(make help)
+
+cat >./README.md <<EOL
+# $PROJECT_NAME
+
+ToDo: update README
+
+## List of available commands
+\`\`\`bash
+$(HELP)
+\`\`\`
+EOL
 
 
 echo ""
