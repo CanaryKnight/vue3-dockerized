@@ -43,14 +43,18 @@ make create_app
 
 HELP=$(make help)
 
+echo -e "$HELP"
+
 cat >./README.md <<EOL
 # $PROJECT_NAME
 
 ToDo: update README
 
 ## List of available commands
-\`\`\`bash
-$(HELP)
+\`\`\`
+make help
+
+$HELP
 \`\`\`
 EOL
 
