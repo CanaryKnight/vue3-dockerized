@@ -31,8 +31,8 @@ APP_CONT = $(DOCKER_COMP) exec -it app
 YARN     = $(APP_CONT) yarn
 
 # Misc
-.DEFAULT_GOAL = help
-.PHONY        = help create_app dev build down logs
+.DEFAULT_GOAL: help
+.PHONY       : help create_app dev build down logs
 
 GREEN := $(shell tput setaf 2)
 RESET := $(shell tput sgr0)
