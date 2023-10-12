@@ -41,9 +41,7 @@ cd "$PROJECT_NAME" && rm -rf .git && rm -rf "./installer.sh"
 
 make create_app
 
-HELP=$(make help)
-
-echo -e "$HELP"
+HELP=$(make help| sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g")
 
 cat >./README.md <<EOL
 # $PROJECT_NAME
